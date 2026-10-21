@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#6f4a8e">
+<title>شغل خلود</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+
+<style>
+:root{--purple:#6f4a8e;--deep:#4d3267;--lav:#eee5f6;--pale:#f8f4fb;--ink:#30243a;--muted:#867692;--line:#e7dced;--white:#fff;--green:#277b61;--red:#b5465a}
+*{box-sizing:border-box}body{margin:0;background:var(--pale);color:var(--ink);font-family:Tahoma,Arial,sans-serif;font-size:15px}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}
+.app{max-width:780px;margin:auto;min-height:100vh;padding-bottom:90px}
+header{background:linear-gradient(135deg,#5b3a79,#8663a5);color:#fff;padding:22px 18px 25px;border-radius:0 0 28px 28px;box-shadow:0 8px 24px #60407825}
+.top{display:flex;align-items:center;gap:12px}.logo{width:52px;height:52px;border-radius:17px;background:#ffffff25;display:grid;place-items:center;font-size:25px}
+h1{font-size:23px;margin:0 0 5px}header p{margin:0;color:#eee2f6;font-size:13px}
+.content{padding:16px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:-2px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:17px;padding:13px 11px;min-width:0;box-shadow:0 4px 14px #4b2b6410}
+.stat .label{font-size:11px;color:var(--muted);margin-bottom:8px}.stat .num{font-size:18px;font-weight:bold;color:var(--deep);overflow-wrap:anywhere}
+.toolbar{display:flex;gap:9px;margin:18px 0 12px}.search{flex:1;min-width:0}
+input,select,textarea{width:100%;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--ink);outline:none}
+input:focus,select:focus,textarea:focus{border-color:#a98bc0;box-shadow:0 0 0 3px #8d6bb21a}
+.btn{border-radius:12px;padding:12px 15px;font-weight:bold;white-space:nowrap}.primary{background:var(--purple);color:#fff}.soft{background:var(--lav);color:var(--deep)}.danger{background:#fff0f1;color:var(--red)}.iconbtn{width:40px;height:40px;padding:0;border-radius:12px;background:var(--lav);color:var(--deep);font-size:17px}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin:16px 2px 10px}.section-title h2{font-size:17px;margin:0}.small{font-size:12px;color:var(--muted)}
+.list{display:grid;gap:10px}.customer{background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px;box-shadow:0 3px 12px #4b2b6408}
+.customer-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.name{font-weight:bold;font-size:16px}.phone{color:var(--muted);font-size:13px;margin-top:5px;direction:ltr;text-align:right}
+.pill{display:inline-block;background:var(--lav);color:var(--deep);padding:5px 9px;border-radius:99px;font-size:11px}
+.details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:13px}.detail{background:var(--pale);border-radius:11px;padding:9px}.detail .label{font-size:11px;color:var(--muted);margin-bottom:5px}.detail .value{font-weight:bold;font-size:14px;overflow-wrap:anywhere}
+.card-actions{display:flex;gap:8px;margin-top:12px}.card-actions button{flex:1;padding:9px 10px;font-size:13px}
+.empty{text-align:center;color:var(--muted);padding:30px 15px;background:#fff;border:1px dashed #d9c8e5;border-radius:17px;line-height:1.8}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:5;background:#ffffffed;backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:9px max(12px,env(safe-area-inset-left)) calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:7px}
+nav button{flex:1;max-width:220px;background:transparent;color:var(--muted);padding:9px 6px;border-radius:12px;font-size:12px}nav button.active{background:var(--lav);color:var(--deep);font-weight:bold}
+nav span{display:block;font-size:19px;margin-bottom:3px}
+.page{display:none}.page.active{display:block}
+.formbox,.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:7px}.field label{font-size:12px;color:var(--muted);font-weight:bold}.full{grid-column:1/-1}.form-actions{display:flex;gap:9px;margin-top:16px}.form-actions button{flex:1}
+h2{font-size:18px}.panel{margin-bottom:12px}.panel h3{margin:0 0 12px;font-size:15px}.panelrow{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}.panelrow:last-child{border-bottom:0}.panelrow strong{color:var(--deep)}
+.note{font-size:12px;color:var(--muted);line-height:1.7;margin-top:12px}
+.toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);background:#382546;color:white;padding:11px 16px;border-radius:99px;display:none;z-index:20;max-width:90%;font-size:13px}
+.modal-back{position:fixed;inset:0;background:#21152b88;display:none;align-items:flex-end;justify-content:center;z-index:10;padding:12px}.modal-back.show{display:flex}.modal{width:100%;max-width:760px;max-height:92vh;overflow:auto;background:var(--pale);border-radius:22px;padding:16px}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.modalhead h2{margin:0}
+@media(min-width:620px){.modal-back{align-items:center}.content{padding:20px}.stats{gap:13px}.stat{padding:16px}.stat .num{font-size:22px}}
+@media(max-width:390px){.stats{gap:6px}.stat{padding:10px 8px}.stat .num{font-size:15px}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.toolbar .btn{padding:12px 10px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="top"><div class="logo">🪑</div><div><h1>شغل خلود</h1><p>زبائنچ ومبيعاتچ وعمولاتچ بمكان واحد 💜</p></div></div>
+</header>
+<main class="content">
+  <section id="homePage" class="page active">
+    <div class="stats">
+      <div class="stat"><div class="label">الزبائن</div><div class="num" id="statCustomers">0</div></div>
+      <div class="stat"><div class="label">مجموع المبيعات</div><div class="num" id="statSales">0</div></div>
+      <div class="stat"><div class="label">مجموع العمولات</div><div class="num" id="statCommission">0</div></div>
+    </div>
+    <div class="toolbar"><div class="search"><input id="searchInput" placeholder="🔎 ابحثي بالاسم أو الرقم أو الأثاث"></div><button class="btn primary" id="addBtn">＋ إضافة</button></div>
+    <div class="section-title"><h2>سجل الزبائن</h2><span class="small" id="resultCount">0 سجل</span></div>
+    <div id="customerList" class="list"></div>
+  </section>
+  <section id="reportsPage" class="page">
+    <div class="section-title"><h2>ملخص شغلچ</h2></div>
+    <div class="panel"><h3>📊 الأرقام الكلية</h3>
+      <div class="panelrow"><span>عدد الزبائن</span><strong id="reportCustomers">0</strong></div>
+      <div class="panelrow"><span>إجمالي سعر البيع</span><strong id="reportSales">0</strong></div>
+      <div class="panelrow"><span>إجمالي العمولات</span><strong id="reportCommission">0</strong></div>
+    </div>
+    <div class="panel"><h3>💾 حفظ نسخة احتياطية</h3><p class="small">نزّلي نسخة من بياناتچ حتى تكدرين ترجعيلها إذا بدّلتي الجهاز أو انمسحت بيانات المتصفح.</p><button class="btn primary" style="width:100%" id="exportBtn">تنزيل نسخة احتياطية</button>
+      <div style="height:10px"></div><label class="btn soft" style="display:block;text-align:center" for="importFile">استرجاع نسخة احتياطية</label><input type="file" id="importFile" accept=".json,application/json" style="display:none">
+    </div>
+    <div class="panel"><h3>🔐 خصوصية البيانات</h3><p class="small">بياناتچ محفوظة على هذا الجهاز داخل المتصفح، وما تنرسل لأي مكان من خلال هذا التطبيق. لا تمسحين بيانات المتصفح قبل تنزيل نسخة احتياطية.</p></div>
+  </section>
+  <section id="settingsPage" class="page">
+    <div class="section-title"><h2>الإعدادات</h2></div>
+    <div class="panel"><h3>💜 شغل خلود</h3><p class="small">نسخة أولية لإدارة الزبائن وطلبات الأثاث. تكدرين تضيفين وتعدّلين وتحذفين وتبحثين بالسجلات.</p></div>
+    <div class="panel"><h3>🗑️ مسح كل البيانات</h3><p class="small">هذا الإجراء يحذف كل السجلات من هذا الجهاز. نزّلي نسخة احتياطية أولاً إذا تحتاجينها.</p><button class="btn danger" id="clearAllBtn" style="width:100%">مسح جميع السجلات</button></div>
+  </section>
+</main>
+</div>
+<nav>
+<button class="active" data-page="homePage"><span>🏠</span>الرئيسية</button>
+<button data-page="reportsPage"><span>📈</span>الملخص</button>
+<button data-page="settingsPage"><span>⚙️</span>الإعدادات</button>
+</nav>
+<div class="modal-back" id="modalBack">
+  <div class="modal">
+    <div class="modalhead"><h2 id="formTitle">إضافة زبون</h2><button class="iconbtn" id="closeModal" aria-label="إغلاق">✕</button></div>
+    <form id="customerForm">
+      <input type="hidden" id="recordId">
+      <div class="formgrid">
+        <div class="field"><label for="name">اسم الزبون *</label><input id="name" required maxlength="100" placeholder="اسم الزبون"></div>
+        <div class="field"><label for="phone">رقم الهاتف</label><input id="phone" inputmode="tel" maxlength="30" placeholder="07xxxxxxxxx"></div>
+        <div class="field"><label for="furniture">نوع الأثاث</label><input id="furniture" maxlength="100" placeholder="مثلاً: غرفة نوم"></div>
+        <div class="field"><label for="sale">سعر البيع</label><input id="sale" type="number" min="0" step="any" inputmode="decimal" placeholder="0"></div>
+        <div class="field"><label for="commission">العمولة</label><input id="commission" type="number" min="0" step="any" inputmode="decimal" placeholder="0"></div>
+        <div class="field"><label for="date">تاريخ الطلب</label><input id="date" type="date"></div>
+        <div class="field full"><label for="notes">ملاحظات</label><textarea id="notes" rows="3" maxlength="1000" placeholder="تفاصيل إضافية (اختياري)"></textarea></div>
+      </div>
+      <div class="form-actions"><button type="button" class="btn soft" id="cancelBtn">إلغاء</button><button type="submit" class="btn primary">حفظ البيانات</button></div>
+    </form>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const STORAGE_KEY = "shoghl_khulood_customers_v1";
+let customers = [];
+try { customers = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); if(!Array.isArray(customers)) customers=[]; } catch(e){ customers=[]; }
+const $ = id => document.getElementById(id);
+const money = n => (Number(n)||0).toLocaleString("ar-IQ",{maximumFractionDigits:2});
+const safe = s => String(s ?? "").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function persist(){ try{localStorage.setItem(STORAGE_KEY,JSON.stringify(customers));}catch(e){toast("تعذر الحفظ؛ نزّلي نسخة احتياطية أو أفرغي مساحة.");} }
+function toast(msg){const el=$("toast");el.textContent=msg;el.style.display="block";clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.style.display="none",2400);}
+function sums(){return customers.reduce((a,c)=>{a.sales+=Number(c.sale)||0;a.commission+=Number(c.commission)||0;return a;},{sales:0,commission:0});}
+function render(){
+ const total=sums();
+ $("statCustomers").textContent=money(customers.length);
+ $("statSales").textContent=money(total.sales);
+ $("statCommission").textContent=money(total.commission);
+ $("reportCustomers").textContent=money(customers.length);
+ $("reportSales").textContent=money(total.sales);
+ $("reportCommission").textContent=money(total.commission);
+ const q=$("searchInput").value.trim().toLowerCase();
+ const filtered=customers.filter(c=>[c.name,c.phone,c.furniture,c.notes].some(v=>String(v||"").toLowerCase().includes(q)));
+ $("resultCount").textContent=filtered.length+" سجل";
+ if(!filtered.length){$("customerList").innerHTML=`<div class="empty">${q?"ما لكيت نتيجة تطابق بحثچ.":"بعد ما ضفتي زبائن 💜<br>اضغطي «＋ إضافة» حتى تسجلين أول طلب."}</div>`;return;}
+ $("customerList").innerHTML=filtered.slice().reverse().map(c=>`
+ <article class="customer">
+  <div class="customer-head"><div><div class="name">${safe(c.name)}</div><div class="phone">${safe(c.phone||"ماكو رقم مسجل")}</div></div><span class="pill">${safe(c.date||"بدون تاريخ")}</span></div>
+  <div class="details">
+   <div class="detail"><div class="label">نوع الأثاث</div><div class="value">${safe(c.furniture||"—")}</div></div>
+   <div class="detail"><div class="label">سعر البيع</div><div class="value">${money(c.sale)} د.ع</div></div>
+   <div class="detail"><div class="label">العمولة</div><div class="value">${money(c.commission)} د.ع</div></div>
+   <div class="detail"><div class="label">ملاحظات</div><div class="value">${safe(c.notes||"—")}</div></div>
+  </div>
+  <div class="card-actions"><button class="btn soft" onclick="editRecord('${c.id}')">✏️ تعديل</button><button class="btn danger" onclick="deleteRecord('${c.id}')">🗑️ حذف</button></div>
+ </article>`).join("");
+}
+function openForm(c){
+ $("customerForm").reset();$("recordId").value=c?.id||"";
+ $("formTitle").textContent=c?"تعديل بيانات الزبون":"إضافة زبون";
+ $("name").value=c?.name||"";$("phone").value=c?.phone||"";$("furniture").value=c?.furniture||"";
+ $("sale").value=c?.sale??"";$("commission").value=c?.commission??"";$("date").value=c?.date||new Date().toISOString().slice(0,10);$("notes").value=c?.notes||"";
+ $("modalBack").classList.add("show");setTimeout(()=>$("name").focus(),100);
+}
+function closeForm(){$("modalBack").classList.remove("show")}
+function editRecord(id){const c=customers.find(x=>x.id===id);if(c)openForm(c)}
+function deleteRecord(id){const c=customers.find(x=>x.id===id);if(c&&confirm("متأكدة تريدين تحذفين سجل "+c.name+"؟")){customers=customers.filter(x=>x.id!==id);persist();render();toast("انحذف السجل.");}}
+$("addBtn").addEventListener("click",()=>openForm());
+$("closeModal").addEventListener("click",closeForm);$("cancelBtn").addEventListener("click",closeForm);
+$("modalBack").addEventListener("click",e=>{if(e.target===$("modalBack"))closeForm()});
+$("customerForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const id=$("recordId").value||("c_"+Date.now()+"_"+Math.random().toString(36).slice(2,7));
+ const old=customers.find(c=>c.id===id);
+ const c={id,name:$("name").value.trim(),phone:$("phone").value.trim(),furniture:$("furniture").value.trim(),sale:$("sale").value,commission:$("commission").value,date:$("date").value,notes:$("notes").value.trim(),createdAt:old?.createdAt||new Date().toISOString()};
+ if(!c.name){toast("اكتبي اسم الزبون أولاً.");return;}
+ if(old)customers=customers.map(x=>x.id===id?c:x);else customers.push(c);
+ persist();render();closeForm();toast(old?"تعدّلت البيانات بنجاح 💜":"انحفظ الزبون بنجاح 💜");
+});
+$("searchInput").addEventListener("input",render);
+document.querySelectorAll("nav button").forEach(btn=>btn.addEventListener("click",()=>{
+ document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b===btn));
+ document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===btn.dataset.page));
+}));
+$("exportBtn").addEventListener("click",()=>{
+ const blob=new Blob([JSON.stringify({app:"شغل خلود",version:1,exportedAt:new Date().toISOString(),customers},null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="نسخة_احتياطية_شغل_خلود.json";a.click();URL.revokeObjectURL(url);toast("جهزت النسخة الاحتياطية.");
+});
+$("importFile").addEventListener("change",async e=>{
+ const file=e.target.files[0];if(!file)return;
+ try{const data=JSON.parse(await file.text());const arr=Array.isArray(data)?data:data.customers;if(!Array.isArray(arr))throw Error();
+ if(!confirm("استرجاع النسخة راح يستبدل السجلات الحالية. نكمل؟")){e.target.value="";return;}
+ customers=arr.filter(c=>c&&typeof c==="object"&&c.name).map(c=>({...c,id:String(c.id||("c_"+Date.now()+Math.random()))}));
+ persist();render();toast("تم استرجاع البيانات.");}catch(err){alert("الملف مو نسخة احتياطية صحيحة.");}e.target.value="";
+});
+$("clearAllBtn").addEventListener("click",()=>{if(confirm("تحذير: راح تنحذف كل السجلات نهائياً من هذا المتصفح. متأكدة؟")){customers=[];persist();render();toast("تم مسح السجلات.");}});
+render();
+</script>
+
+<script>
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+}
+</script>
+
+</body>
+</html>
